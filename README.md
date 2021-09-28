@@ -19,7 +19,7 @@ The [`.gitconfig`](./.gitconfig) file has my configuration and aliases for git, 
 
 ```sh
 ln -s $PATH_TO_REPO/.gitconfig ~/.gitconfig
-
+ln -s $PATH_TO_REPO/.gitexcludes ~/.gitexcludes
 ```
 
 This file has an include to `~/.gitconfig-user` which can hold the per-machine overrides. The `.gitconfig` has the `user.name` configuration set so, for me, only `user.email` should need to be set, but other things can be overridden/set here too (including `user.name`):
