@@ -1,0 +1,33 @@
+[user]
+	name = Kevin Hira
+[core]
+	editor = vim
+[pull]
+    rebase = true
+[push]
+	default = simple
+[alias]
+	last = log -1 HEAD
+	l = log --graph --format='%C(yellow)%H%C(reset)%C(auto)%d%C(reset)%nAuthor: %C(auto)%an%C(reset) <%ae>%nCommit: %cn <%ce>%nDate:   %aD%n        %cD%nParent: %C(yellow)%p%C(reset)%n%w(0,4,4)%n%s%n%+b%+N'
+    lu = l HEAD @{u}
+	see = show --format='%C(yellow)%H%C(reset)%C(auto)%d%C(reset)%nAuthor: %C(auto)%an%C(reset) <%ae>%nCommit: %cn <%ce>%nDate:   %aD%n        %cD%nParent: %C(yellow)%p%C(reset)%n%w(0,4,4)%n%s%n%+b%+N'
+	lag = l --all
+	addp = add -p
+    diffs = diff --staged
+    diffpull = !git diff HEAD..`git upstream`
+    diffpush = !git diff `git upstream`..HEAD
+	throw = checkout --
+	disable = update-index --assume-unchanged
+	enable = update-index --no-assume-unchanged
+	watch = !"while :; do git fetch;  git lag; done"
+	upstream = rev-parse --abbrev-ref --symbolic-full-name @{u}
+	undo = reset --soft HEAD~
+[pager]
+	log = less -+FX -R
+	diff = less -+FX -R
+	show = less -+FX -R
+	blame = less -+FX -R
+[credential]
+	helper = osxkeychain
+[include]
+	path = ~/.gitconfig-user
