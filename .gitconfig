@@ -10,7 +10,7 @@
 	default = simple
 [alias]
 	last = log -1 HEAD
-	l = log --graph --format='%C(yellow)%H%C(reset)%C(auto)%d%C(reset)%nAuthor: %C(auto)%an%C(reset) <%ae>%nCommit: %cn <%ce>%nDate:   %aD%n        %cD%nParent: %C(yellow)%p%C(reset)%n%w(0,4,4)%n%s%n%+b%+N'
+	l = log --graph --format='%C(yellow)%H%C(reset)%C(auto)%d%C(reset)%nAuthor: %C(auto)%aN%C(reset) <%aE>%nCommit: %cN <%cE>%nDate:   %aD%n        %cD%nParent: %C(yellow)%p%C(reset)%n%w(0,4,4)%n%s%n%+b%+N'
 	lu = l HEAD @{u}
 	see = show --format='%C(yellow)%H%C(reset)%C(auto)%d%C(reset)%nAuthor: %C(auto)%an%C(reset) <%ae>%nCommit: %cn <%ce>%nDate:   %aD%n        %cD%nParent: %C(yellow)%p%C(reset)%n%w(0,4,4)%n%s%n%+b%+N'
 	lag = l --exclude=refs/notes/commits --all
@@ -38,3 +38,5 @@
 	helper = osxkeychain
 [include]
 	path = ~/.gitconfig-user
+[log]
+	mailmap = true
