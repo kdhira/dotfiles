@@ -75,6 +75,7 @@ plugins=(
     macos
     zsh-autosuggestions
     zsh-syntax-highlighting
+    aws
 )
 
 # powerlevel9k settings
@@ -107,7 +108,7 @@ POWERLEVEL9K_COMMAND_EXECUTION_TIME_THRESHOLD=0
 POWERLEVEL9K_COMMAND_EXECUTION_TIME_BACKGROUND='007'
 POWERLEVEL9K_COMMAND_EXECUTION_TIME_FOREGROUND='000'
 
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(command_execution_time custom_vpn status context dir vcs)
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(command_execution_time custom_vpn status context dir vcs aws)
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=()
 
 
@@ -138,4 +139,3 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-
