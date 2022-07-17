@@ -8,30 +8,36 @@ Read through the [README](./README.md) to set up base `zsh`, `git`, and `vim` co
 
 Install Oh My Zsh:
 
-```zsh
+```sh
 # Verify: https://ohmyz.sh/#install
 sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 ```
 
-> The 'MesloLGS NF' Nerd Font can be found in many places on the internet, including here:
-> https://github.com/romkatv/powerlevel10k#manual-font-installation
+Install the Fira Code Nerd Font through `brew` (scroll down to the _Brew_ section below for info in installing `brew`):
+
+```sh
+brew tap homebrew/cask-fonts
+brew install font-fira-code-nerd-font
+```
+
+Then use the "Fira Code Nerd Font" as the font for your editors, terminals. This font supports the Nerd Font glyphs as well as ligatures.
 
 Install Powerlevel10k by following https://github.com/romkatv/powerlevel10k#oh-my-zsh, which is essentially:
 
-```zsh
+```sh
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
 ```
 
 Source [`zshrc.d/ohmyzsh.zsh`](./zshrc.d/ohmyzsh.zsh) to get all of the configuration, including the powerlevel10k theme config:
 
-```zsh
+```sh
 # ~/.zshrc
 source $KDHIRA_DOTFILES/zshrc.d/ohmyzsh.zsh
 ```
 
 Disable zsh's "auto cd", which is likely enabled by Oh My Zsh, by adding to your `.zshrc`:
 
-```zsh
+```sh
 # ~/.zshrc
 unsetopt AUTO_CD
 ```
@@ -58,14 +64,14 @@ Navigate to https://docs.docker.com/desktop/mac/install/ and follow instructions
 
 ## Brew
 
-```zsh
+```sh
 # Verify: https://brew.sh
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 ```
 
 Useful software installable through `brew`:
 
-```zsh
+```sh
 brew install git
 brew install htop
 brew install tree
@@ -85,13 +91,13 @@ brew install terraform
 
 Install with:
 
-```zsh
+```sh
 brew install nvm
 ```
 
 To enable, follow the instructions for the `brew postinstall`, or alternatively source [`zshrc.d/nvm.sh`](./zshrc.d/nvm.sh):
 
-```zsh
+```sh
 # ~/.zshrc
 source $KDHIRA_DOTFILES/zshrc.d/nvm.sh
 ```
@@ -104,13 +110,13 @@ _fzf allows for a better fuzzy search in terminal._
 
 Install with:
 
-```zsh
+```sh
 brew install fzf
 ```
 
 Enable `fzf` through script source:
 
-```zsh
+```sh
 # ~/.zshrc
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 ```
@@ -123,13 +129,13 @@ _Starship provides a configuration framework for terminal prompt._
 
 Install with:
 
-```zsh
+```sh
 brew install starship
 ```
 
 Enable the prompt through the following `eval`:
 
-```zsh
+```sh
 # ~/.zshrc
 export STARSHIP_CONFIG=$KDHIRA_DOTFILES/starship/starship.toml
 eval "$(starship init zsh)"
@@ -145,7 +151,7 @@ _Rectangle is a window management tool for MacOS._
 
 Install with:
 
-```zsh
+```sh
 # https://formulae.brew.sh/cask/rectangle
 brew install --cask rectangle
 ```
