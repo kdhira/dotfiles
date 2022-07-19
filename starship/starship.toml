@@ -16,6 +16,9 @@ ssh_only = false
 only_detached = false
 tag_disabled = false
 
+[sudo]
+disabled = false
+
 # https://starship.rs/presets/nerd-font.html
 [aws]
 symbol = " "
