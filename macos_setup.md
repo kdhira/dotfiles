@@ -32,6 +32,7 @@ Source [`zshrc.d/ohmyzsh.zsh`](./zshrc.d/ohmyzsh.zsh) to get all of the configur
 
 ```sh
 # ~/.zshrc
+KDHIRA_PROMPT_STRATEGY=pl10k # If this is unset/set to something else, powerlevel10k theme won't be used
 source $KDHIRA_DOTFILES/zshrc.d/ohmyzsh.zsh
 ```
 
