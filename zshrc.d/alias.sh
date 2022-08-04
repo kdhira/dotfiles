@@ -17,7 +17,7 @@ dotfiles() {
     fi
 
     if [[ $# -le 1 ]] || [ $1 = '-e'] || [ $1 = '--edit']; then
-        exec code $KDHIRA_DOTFILES
+        code $KDHIRA_DOTFILES
     elif [ $1 = '-r'] || [ $1 = '--reload']; then
         # TODO: Assumes zsh shell
         source ~/.zshrc
