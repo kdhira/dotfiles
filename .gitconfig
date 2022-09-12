@@ -18,7 +18,6 @@
 	diffs = diff --staged
 	diffpull = diff @..@{upstream}
 	diffpush = diff @{upstream}..@
-	throw = checkout --
 	disable = update-index --assume-unchanged
 	enable = update-index --no-assume-unchanged
 	w = !"while :; do git lag; done"
