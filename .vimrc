@@ -26,7 +26,7 @@ endif
 
 call plug#begin()
 "Git plugins
-Plug 'tpope/vim-fugitive'
+"Plug 'tpope/vim-fugitive'
 "Tender Themes
 Plug 'jacoborus/tender.vim'
 ""Autocompletion of quotes, brackets, etc
@@ -125,7 +125,7 @@ set nobackup
 let g:lightline = {
     \ 'active': {
     \   'left': [ [ 'mode', 'paste' ],
-    \             [ 'hunksummay', 'gitbranch', 'readonly', 'modified' ],
+    \             [ 'readonly', 'modified' ],
     \             [ 'filepathAbbreviated' ] ],
     \ 'right': [ [ 'lineinfo' ],
     \            [ 'percent' ],
