@@ -1,0 +1,96 @@
+" -----------------------------------------------------------------------------
+" Vim Configuration
+" Author: Kevin Hira
+" https://github.com/kdhira/dotfiles
+" -----------------------------------------------------------------------------
+
+" Don't be compatible with vi
+set nocompatible
+
+" Don't save backups/swap files
+set noswapfile
+set nobackup
+
+" Filetype detection and per-type config and indentation
+filetype on
+filetype plugin on
+filetype indent on
+
+" Reload file if edits happen somewhere else
+set autoread
+
+" Allows undo after file is closed
+if exists("&undodir")
+  set undofile
+  set undodir=/tmp
+endif
+
+" Syntax highlighting
+syntax on
+
+" Line numbers and limits
+set number
+set cc=120
+
+" Cursor line highlighting
+set cursorline
+set nocursorcolumn
+
+" Backspace config
+set backspace=indent,eol,start
+
+" Line wrapping and whitespace
+set showbreak=↪\ 
+set listchars=tab:→\ ,trail:·,extends:>,precedes:<,nbsp:·
+set list
+set wrap linebreak
+
+" Indentation and tabs
+set tabstop=2 softtabstop=2 shiftwidth=2 expandtab
+set smarttab smartindent
+set autoindent
+
+" Tab character change sequences
+map <Leader>rt :%retab!<CR>
+map <Leader>ut :set noexpandtab<CR>
+map <Leader>u<space> :set expandtab<CR>
+map <Leader>u2 :set ts=2 sts=2 sw=2<CR>
+map <Leader>u4 :set ts=4 sts=4 sw=4<CR>
+
+" Scrolling buffer, keep >=n lines above/below cursor
+set scrolloff=10
+" Scroll wrapped lines normally
+noremap <buffer> <silent> k gk
+noremap <buffer> <silent> j gj
+" Ctrl-A and Ctrl-E support (go to start/end of line)
+inoremap <C-a> <C-o>^
+inoremap <C-e> <C-o>$
+
+" Searching
+set hlsearch
+set incsearch
+set ignorecase
+set smartcase
+" Disable highlight search with <leader>/
+nmap <leader>/ :nohlsearch<CR>
+
+" Commands
+set history=1000
+" Enable auto completion menu after pressing TAB in command mode.
+set wildmenu
+set wildignorecase
+" Make wildmenu behave like similar to Bash completion.
+set wildmode=list:longest
+
+" Status bar
+" Display status line always
+set laststatus=2
+" Show cursor position coordinates
+set ruler
+" Show partial command you type in the last line of the screen.
+set showcmd
+" Show the mode you are on the last line.
+set showmode
+
+
+" Pasteboard
