@@ -36,6 +36,15 @@ KDHIRA_PROMPT_STRATEGY=pl10k # If this is unset/set to something else, powerleve
 source $KDHIRA_DOTFILES/zshrc.d/ohmyzsh.zsh
 ```
 
+The following omz plugins are used which can be installed through cloning their respective repos into the `.oh-my-zsh/custom/plugins` directory:
+
+```sh
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+````
+
+NB: it might be possible to install these plugins with `brew` (such as with Intel Mac), however you might experience linking issues (such as with Apple Silicon Mac).
+
 Disable zsh's "auto cd", which is likely enabled by Oh My Zsh, by adding to your `.zshrc`:
 
 ```sh
@@ -68,6 +77,12 @@ Navigate to https://docs.docker.com/desktop/mac/install/ and follow instructions
 ```sh
 # Verify: https://brew.sh
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+```
+
+Note that for Apple Silicon Mac, the default install and operation directory of `brew` has been changed to `/opt/homebrew`. You will need to `eval "$(/opt/homebrew/bin/brew shellenv)"` to link the brew executable and installed software into the PATH. Alternatively, the [`./zshrc.d/homebrew.sh`](./zshrc.d/homebrew.sh) file will do this for you, so you can source this from your `.zshrc`
+
+```sh
+source $KDHIRA_DOTFILES/zshrc.d/homebrew.zsh
 ```
 
 Useful software installable through `brew`:
