@@ -41,7 +41,7 @@ The following omz plugins are used which can be installed through cloning their 
 ```sh
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
-````
+```
 
 NB: it might be possible to install these plugins with `brew` (such as with Intel Mac), however you might experience linking issues (such as with Apple Silicon Mac).
 
