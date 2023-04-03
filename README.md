@@ -6,9 +6,14 @@ This is the repository to store configuration for some of the software/programs 
 
 Ensure you have a `~/.zshrc` file defined, and add to it a variable export for the location of this repository:
 
-```zsh
-# ~/.zshrc
-export KDHIRA_DOTFILES=/path/to/dotfiles
+```sh
+# ~/.zshenv
+KDHIRA_DOTFILES=/path/to/dotfiles
+```
+
+```sh
+mv ~/.zshrc{,.old}
+ln -s $KDHIRA_DOTFILES/.zshrc ~/.zshrc
 ```
 
 This `KDHIRA_DOTFILES` variable will be used a fair few times elsewhere to reference other files in the repo
