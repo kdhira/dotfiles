@@ -23,18 +23,20 @@ fi
 
 source $KDHIRA_DOTFILES/zshrc.d/homebrew.sh
 
-# Don't use PL10K THEME for ohmyzsh if Warp, use starship instead
 if [[ $TERM_PROGRAM == 'WarpTerminal' ]]; then
-    KDHIRA_PROMPT_STRATEGY=${KDHIRA_PROMPT_STRATEGY:-starship}
+    KDHIRA_PROMPT_STRATEGY=${KDHIRA_PROMPT_WARP_STRATEGY:-pl10k}
 fi
 
 if [[ $TERM_PROGRAM == 'iTerm.app' ]]; then
     source $KDHIRA_DOTFILES/zshrc.d/iterm2.sh
-    KDHIRA_PROMPT_STRATEGY=${KDHIRA_PROMPT_STRATEGY:-pl10k}
+    KDHIRA_PROMPT_STRATEGY=${KDHIRA_PROMPT_ITERM_STRATEGY:-pl10k}
 fi
 
+# Depends on:
+#   - KDHIRA_PROMPT_STRATEGY
 source $KDHIRA_DOTFILES/zshrc.d/ohmyzsh.zsh
 
+# fzf, not supported for WarpTerminal
 if [[ $TERM_PROGRAM == 'iTerm.app' || $TERM_PROGRAM == 'vscode' ]]; then
     [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 fi
