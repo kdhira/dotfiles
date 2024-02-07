@@ -4,8 +4,8 @@
 alias ll='ls -plaThG'
 
 # Encrypt/decrypt with id_rsa
-alias ssh-encrypt='openssl rsautl -encrypt -inkey ~/.ssh/id_rsa'
-alias ssh-decrypt='openssl rsautl -decrypt -inkey ~/.ssh/id_rsa'
+alias ssh-encrypt='openssl pkeyutl -encrypt -inkey ~/.ssh/id_rsa'
+alias ssh-decrypt='openssl pkeyutl -decrypt -inkey ~/.ssh/id_rsa'
 
 dotfiles() {
     _usage="dotfiles [-e|--edit]
