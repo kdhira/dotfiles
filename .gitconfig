@@ -35,11 +35,11 @@
 	blame = less -+FX -R
 [credential]
 	helper = osxkeychain
-[include]
-	path = ~/.gitconfig-user
 [log]
 	mailmap = true
 [init]
 	defaultBranch = main
 [rebase]
 	autoSquash = true
+[include]
+	path = ~/.gitconfig-user
