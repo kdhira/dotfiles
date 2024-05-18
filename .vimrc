@@ -25,10 +25,6 @@ if empty(glob("~/.vim/autoload/plug.vim"))
 endif
 
 call plug#begin()
-"Git plugins
-"Plug 'tpope/vim-fugitive'
-"Tender Themes
-Plug 'jacoborus/tender.vim'
 ""Autocompletion of quotes, brackets, etc
 Plug 'Raimondi/delimitMate'
 "For commenting lines
@@ -43,11 +39,8 @@ Plug 'airblade/vim-gitgutter'
 Plug 'itchyny/lightline.vim'
 "Live Markdown
 Plug 'shime/vim-livedown'
-
-Plug 'vim-scripts/Blazer'
-
+"Catppuccin theme
 Plug 'catppuccin/vim', { 'as': 'catppuccin' }
-
 call plug#end()
 
 set history=200
@@ -125,7 +118,6 @@ set nobackup
 
 "Lightline config
 let g:lightline = {
-    \ 'colorscheme': 'catppuccin_macchiato',
     \ 'active': {
     \   'left': [ [ 'mode', 'paste' ],
     \             [ 'readonly', 'modified' ],
@@ -201,7 +193,7 @@ set termguicolors
 "set background=dark
 set t_Co=256
 colorscheme catppuccin_macchiato
-let g:lightline.colorscheme = 'tender'
+let g:lightline.colorscheme = 'catppuccin_macchiato'
 "highlight Normal ctermfg=white ctermbg=black
 "highlight! link Visual CursorLine
 
