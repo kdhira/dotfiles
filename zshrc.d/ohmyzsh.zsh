@@ -1,15 +1,23 @@
+#!/usr/bin/env zsh
+
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
+if [ ! -d "$ZSH" ]; then
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended --keep-zshrc &>/dev/null
+fi
+
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 if [[ $KDHIRA_PROMPT_STRATEGY == 'pl10k' ]]; then
+    test -d ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/themes/powerlevel10k || git clone https://github.com/romkatv/powerlevel10k ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/themes/powerlevel10k &>/dev/null
     ZSH_THEME="powerlevel10k/powerlevel10k"
+    source $KDHIRA_DOTFILES/zshrc.d/powerlevel10k.sh
 fi
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -71,47 +79,18 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
+test -d ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions || git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions &>/dev/null
+test -d ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting || git clone https://github.com/zsh-users/zsh-syntax-highlighting ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting &>/dev/null
+# ASSUMES:
+#   brew install fzf
+test -d ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/fzf-tab || git clone https://github.com/Aloxaf/fzf-tab ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/fzf-tab &>/dev/null
 plugins=(
-    git
     macos
     zsh-autosuggestions
     zsh-syntax-highlighting
     aws
+    fzf-tab
 )
-
-# powerlevel9k settings
-POWERLEVEL9K_STATUS_CROSS=false
-POWERLEVEL9K_STATUS_OK=false
-
-POWERLEVEL9K_STATUS_ERROR_FOREGROUND='000'
-POWERLEVEL9K_STATUS_ERROR_BACKGROUND='004'
-
-POWERLEVEL9K_HIDE_BRANCH_ICON=true
-POWERLEVEL9K_SHOW_CHANGESET=true
-
-POWERLEVEL9K_CUSTOM_VPN_FOREGROUND="black"
-POWERLEVEL9K_CUSTOM_VPN_BACKGROUND="green"
-POWERLEVEL9K_CONTEXT_DEFAULT_BACKGROUND='008'
-POWERLEVEL9K_CONTEXT_DEFAULT_FOREGROUND='007'
-
-PL9K_DIR_BACKGROUND='007'
-PL9K_DIR_FOREGROUND='000'
-POWERLEVEL9K_DIR_DEFAULT_BACKGROUND=$PL9K_DIR_BACKGROUND
-POWERLEVEL9K_DIR_DEFAULT_FOREGROUND=$PL9K_DIR_FOREGROUND
-POWERLEVEL9K_DIR_HOME_BACKGROUND=$PL9K_DIR_BACKGROUND
-POWERLEVEL9K_DIR_HOME_FOREGROUND=$PL9K_DIR_FOREGROUND
-POWERLEVEL9K_DIR_HOME_SUBFOLDER_BACKGROUND=$PL9K_DIR_BACKGROUND
-POWERLEVEL9K_DIR_HOME_SUBFOLDER_FOREGROUND=$PL9K_DIR_FOREGROUND
-POWERLEVEL9K_DIR_ETC_BACKGROUND=$PL9K_DIR_BACKGROUND
-POWERLEVEL9K_DIR_ETC_FOREGROUND=$PL9K_DIR_FOREGROUND
-
-POWERLEVEL9K_COMMAND_EXECUTION_TIME_THRESHOLD=0
-POWERLEVEL9K_COMMAND_EXECUTION_TIME_BACKGROUND='007'
-POWERLEVEL9K_COMMAND_EXECUTION_TIME_FOREGROUND='000'
-
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(command_execution_time custom_vpn status context dir vcs aws)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=()
-
 
 source $ZSH/oh-my-zsh.sh
 

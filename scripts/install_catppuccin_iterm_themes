@@ -1,0 +1,37 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+HTTP_COMMAND=${HTTP_COMMAND:-http}
+
+THEME_URLS=(
+    https://raw.githubusercontent.com/catppuccin/iterm/main/colors/catppuccin-latte.itermcolors
+    https://raw.githubusercontent.com/catppuccin/iterm/main/colors/catppuccin-frappe.itermcolors
+    https://raw.githubusercontent.com/catppuccin/iterm/main/colors/catppuccin-macchiato.itermcolors
+    https://raw.githubusercontent.com/catppuccin/iterm/main/colors/catppuccin-mocha.itermcolors
+
+)
+
+download_and_apply_iterm_theme() {
+    local url=$1
+    local filename
+    filename="$(basename "${url}")"
+    local filepath="${tmp_dir}/${filename}"
+
+    echo "Fetching ${filename} from ${url}"
+    # shellcheck disable=SC2086
+    ${HTTP_COMMAND} "${url}" >"${filepath}"
+
+    echo "Opening ${filepath}"
+    open "${filepath}"
+}
+
+install_themes() {
+    tmp_dir="$(mktemp -d -p /tmp)"
+    echo Saving to "${tmp_dir}"
+
+    for theme_url in "${THEME_URLS[@]}"; do
+        download_and_apply_iterm_theme "${theme_url}"
+    done
+}
+
+install_themes

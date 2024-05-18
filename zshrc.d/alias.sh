@@ -1,10 +1,11 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # General aliases
 alias ll='ls -plaThG'
 
 # less ls
 lll() {
+    # shellcheck disable=SC2068
     CLICOLOR_FORCE=1 ll $@ | less
 }
 
@@ -23,25 +24,27 @@ dotfiles() {
         return 1
     fi
 
-    if [[ $# -le 1 ]] || [ $1 = '-e'] || [ $1 = '--edit']; then
-        code $KDHIRA_DOTFILES
-    elif [ $1 = '-r'] || [ $1 = '--reload']; then
+    if [[ $# -le 1 ]] || [ "$1" = '-e' ] || [ "$1" = '--edit' ]; then
+        code "$KDHIRA_DOTFILES"
+    elif [ "$1" = '-r' ] || [ "$1" = '--reload' ]; then
         # TODO: Assumes zsh shell
-        source ~/.zshrc
+        # shellcheck disable=SC1091
+        source "$HOME/.zshrc"
     else
-        echo $_usage >&2
+        echo "$_usage" >&2
         return 1
     fi
 }
 
 rsamd5() {
+    # shellcheck disable=SC2068
     openssl rsa -noout -modulus $@ | openssl md5
 }
 
 x509md5() {
+    # shellcheck disable=SC2068
     openssl x509 -noout -modulus $@ | openssl md5
 }
-
 
 # MacOS pasteboard stuff
 alias pb='pbpaste'
@@ -66,8 +69,8 @@ sslping() {
         endpoint="$endpoint:443"
     fi
 
-    : | openssl s_client -showcerts -connect $endpoint
+    : | openssl s_client -showcerts -connect "$endpoint"
 }
 sslx509() {
-    sslping $1 | openssl x509 -text
+    sslping "$1" | openssl x509 -text
 }

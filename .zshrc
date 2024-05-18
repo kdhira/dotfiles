@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/usr/bin/env zsh
 
 ###############################################################################
 # KDHIRA DOTFILES ZSHRC
@@ -21,44 +21,59 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+# Homebrew init
+# LOADS:
+#   HOMEBREW_PREFIX
 source $KDHIRA_DOTFILES/zshrc.d/homebrew.sh
 
-if [[ $TERM_PROGRAM == 'WarpTerminal' ]]; then
-    KDHIRA_PROMPT_STRATEGY=${KDHIRA_PROMPT_WARP_STRATEGY:-pl10k}
-fi
+KDHIRA_PROMPT_STRATEGY=${KDHIRA_PROMPT_WARP_STRATEGY:-pl10k}
 
 if [[ $TERM_PROGRAM == 'iTerm.app' ]]; then
-    source $KDHIRA_DOTFILES/zshrc.d/iterm2.sh
-    KDHIRA_PROMPT_STRATEGY=${KDHIRA_PROMPT_ITERM_STRATEGY:-pl10k}
+    [ -f "$HOME/.iterm2_shell_integration.zsh" ] && source "$HOME/.iterm2_shell_integration.zsh"
 fi
 
 # Depends on:
 #   - KDHIRA_PROMPT_STRATEGY
-source $KDHIRA_DOTFILES/zshrc.d/ohmyzsh.zsh
+KDHIRA_ZSH_PLUGIN_MANGER=${KDHIRA_ZSH_PLUGIN_MANGER:-zinit}
+[ "$KDHIRA_ZSH_PLUGIN_MANGER" = "zinit" ] && source $KDHIRA_DOTFILES/zshrc.d/zinit.zsh
+[ "$KDHIRA_ZSH_PLUGIN_MANGER" = "ohmyzsh" ] && source $KDHIRA_DOTFILES/zshrc.d/ohmyzsh.zsh
 
 # fzf, not supported for WarpTerminal
-if [[ $TERM_PROGRAM == 'iTerm.app' || $TERM_PROGRAM == 'vscode' ]]; then
+if [[ $TERM_PROGRAM == 'iTerm.app' ]] || [[ $TERM_PROGRAM == 'vscode' ]]; then
+    command -v fzf &>/dev/null || brew install fzf
     [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+    # fzf catppuccin theme
+    # https://github.com/catppuccin/fzf
+    export FZF_DEFAULT_OPTS=" \
+    --color=bg+:#363a4f,bg:#24273a,spinner:#f4dbd6,hl:#ed8796 \
+    --color=fg:#cad3f5,header:#ed8796,info:#c6a0f6,pointer:#f4dbd6 \
+    --color=marker:#f4dbd6,fg+:#cad3f5,prompt:#c6a0f6,hl+:#ed8796"
 fi
 
 if [[ $KDHIRA_PROMPT_STRATEGY == 'starship' ]]; then
+    which starship &>/dev/null || brew install starship
     export STARSHIP_CONFIG=${STARSHIP_CONFIG:-$KDHIRA_DOTFILES/starship/starship.toml}
     eval "$(starship init zsh)"
 fi
 
-source $KDHIRA_DOTFILES/zshrc.d/nvm.sh
 source $KDHIRA_DOTFILES/zshrc.d/env.sh
 source $KDHIRA_DOTFILES/zshrc.d/alias.sh
 
-autoload -U +X bashcompinit && bashcompinit
-
-# Terraform autocomplete
-# `terraform -install-autocomplete`
-test -f /usr/local/bin/terraform && complete -o nospace -C /usr/local/bin/terraform terraform
-
-unsetopt AUTO_CD
+# NVM
+export NVM_DIR="$HOME/.nvm"
+[ -s "$HOMEBREW_PREFIX/opt/nvm/nvm.sh" ] && source "$HOMEBREW_PREFIX/opt/nvm/nvm.sh" # This loads nvm
+[ -s "$HOMEBREW_PREFIX/opt/nvm/etc/bash_completion.d/nvm" ] && source "$HOMEBREW_PREFIX/opt/nvm/etc/bash_completion.d/nvm" # This loads nvm bash_completion
 
 # Per-machine customisations
 if [ -f ~/.zshrc-user ]; then
     source ~/.zshrc-user
+fi
+
+unsetopt AUTO_CD
+autoload -U compinit && compinit
+autoload -U +X bashcompinit && bashcompinit
+
+if which zinit &>/dev/null; then
+    zinit cdreplay -q
 fi

@@ -46,6 +46,8 @@ Plug 'shime/vim-livedown'
 
 Plug 'vim-scripts/Blazer'
 
+Plug 'catppuccin/vim', { 'as': 'catppuccin' }
+
 call plug#end()
 
 set history=200
@@ -123,6 +125,7 @@ set nobackup
 
 "Lightline config
 let g:lightline = {
+    \ 'colorscheme': 'catppuccin_macchiato',
     \ 'active': {
     \   'left': [ [ 'mode', 'paste' ],
     \             [ 'readonly', 'modified' ],
@@ -194,9 +197,10 @@ endfunction
 
 "Theme
 set noshowmode
+set termguicolors
 "set background=dark
 set t_Co=256
-colorscheme blazer
+colorscheme catppuccin_macchiato
 let g:lightline.colorscheme = 'tender'
 "highlight Normal ctermfg=white ctermbg=black
 "highlight! link Visual CursorLine
