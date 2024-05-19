@@ -23,7 +23,6 @@ zinit light Aloxaf/fzf-tab
 
 # Snippets
 zinit snippet OMZP::aws
-zinit snippet OMZP::thefuck
 
 # Binds
 # bindkey '^p' history-search-backward
