@@ -1,0 +1,30 @@
+#!/usr/bin/env zsh
+
+set -ex
+
+SCRIPT='
+set -ex
+
+apt update
+apt-get install -y curl git procps sudo
+
+cat <<EOF > .zshrc
+export NONINTERACTIVE=1
+export CI=1
+source $KDHIRA_DOTFILES/.zshrc
+EOF
+
+ln -s $KDHIRA_DOTFILES/.vimrc $HOME/.vimrc
+
+set +x
+exec zsh -l
+'
+
+docker run --rm -it \
+    -v ${PWD}:/root/projects/dotfiles \
+    -v /tmp/dotfiles.zshrc.cache:/root/.cache \
+    -v /tmp/dotfiles.apt.package.cache:/var/cache/apt/archives \
+    -v /tmp/dotfiles.apt.list.cache:/var/lib/apt/lists \
+    -w /root \
+    -e KDHIRA_DOTFILES=/root/projects/dotfiles \
+    zshusers/zsh:5.9 zsh -c "${SCRIPT}"

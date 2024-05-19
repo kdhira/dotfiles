@@ -39,9 +39,9 @@ KDHIRA_ZSH_PLUGIN_MANGER=${KDHIRA_ZSH_PLUGIN_MANGER:-zinit}
 [ "$KDHIRA_ZSH_PLUGIN_MANGER" = "ohmyzsh" ] && source $KDHIRA_DOTFILES/zshrc.d/ohmyzsh.zsh
 
 # fzf, not supported for WarpTerminal
-if [[ $TERM_PROGRAM == 'iTerm.app' ]] || [[ $TERM_PROGRAM == 'vscode' ]]; then
+if [[ $TERM_PROGRAM != 'WarpTerminal' ]]; then
     command -v fzf &>/dev/null || brew install fzf
-    [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+    eval "$(fzf --zsh)"
 
     # fzf catppuccin theme
     # https://github.com/catppuccin/fzf
@@ -52,7 +52,7 @@ if [[ $TERM_PROGRAM == 'iTerm.app' ]] || [[ $TERM_PROGRAM == 'vscode' ]]; then
 fi
 
 if [[ $KDHIRA_PROMPT_STRATEGY == 'starship' ]]; then
-    which starship &>/dev/null || brew install starship
+    command -v starship &>/dev/null || brew install starship
     export STARSHIP_CONFIG=${STARSHIP_CONFIG:-$KDHIRA_DOTFILES/starship/starship.toml}
     eval "$(starship init zsh)"
 fi
@@ -74,6 +74,6 @@ unsetopt AUTO_CD
 autoload -U compinit && compinit
 autoload -U +X bashcompinit && bashcompinit
 
-if which zinit &>/dev/null; then
+if type zinit &>/dev/null; then
     zinit cdreplay -q
 fi
