@@ -12,10 +12,6 @@ source "${ZINIT_HOME}/zinit.zsh"
 zinit ice depth=1
 
 # Plugins
-if [[ $KDHIRA_PROMPT_STRATEGY == 'pl10k' ]]; then
-    source $KDHIRA_DOTFILES/zshrc.d/powerlevel10k.sh
-    zinit light romkatv/powerlevel10k
-fi
 zinit light zsh-users/zsh-syntax-highlighting
 zinit light zsh-users/zsh-completions
 zinit light zsh-users/zsh-autosuggestions

@@ -8,33 +8,24 @@
 # > Required
 #   - KDHIRA_DOTFILES: Directory to dotfiles repo clone
 # > Optional
-#   - KDHIRA_PROMPT_STRATEGY: Which PS1 prompt engine to use (pl10k, starship)
+#   - KDHIRA_PROMPT_STRATEGY: Which PS1 prompt engine to use (omp, starship)
 #   - STARSHIP_CONFIG: Path to sharship config
 #       (default $KDHIRA_DOTFILES/starship/starship.toml)
 
 ###############################################################################
 
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
+KDHIRA_PROMPT_STRATEGY=${KDHIRA_PROMPT_STRATEGY:-omp}
+KDHIRA_ZSH_PLUGIN_MANGER=${KDHIRA_ZSH_PLUGIN_MANGER:-zinit}
 
 # Homebrew init
 # LOADS:
 #   HOMEBREW_PREFIX
 source $KDHIRA_DOTFILES/zshrc.d/homebrew.sh
 
-KDHIRA_PROMPT_STRATEGY=${KDHIRA_PROMPT_WARP_STRATEGY:-pl10k}
-
 if [[ $TERM_PROGRAM == 'iTerm.app' ]]; then
     [ -f "$HOME/.iterm2_shell_integration.zsh" ] && source "$HOME/.iterm2_shell_integration.zsh"
 fi
 
-# Depends on:
-#   - KDHIRA_PROMPT_STRATEGY
-KDHIRA_ZSH_PLUGIN_MANGER=${KDHIRA_ZSH_PLUGIN_MANGER:-zinit}
 [ "$KDHIRA_ZSH_PLUGIN_MANGER" = "zinit" ] && source $KDHIRA_DOTFILES/zshrc.d/zinit.zsh
 [ "$KDHIRA_ZSH_PLUGIN_MANGER" = "ohmyzsh" ] && source $KDHIRA_DOTFILES/zshrc.d/ohmyzsh.zsh
 
@@ -57,12 +48,17 @@ if [[ $KDHIRA_PROMPT_STRATEGY == 'starship' ]]; then
     eval "$(starship init zsh)"
 fi
 
+if [[ $KDHIRA_PROMPT_STRATEGY == 'omp' ]]; then
+    command -v oh-my-posh &>/dev/null || brew install oh-my-posh
+    eval "$(oh-my-posh init zsh --config $KDHIRA_DOTFILES/oh-my-posh/omp.toml)"
+fi
+
 source $KDHIRA_DOTFILES/zshrc.d/env.sh
 source $KDHIRA_DOTFILES/zshrc.d/alias.sh
 
 # NVM
 export NVM_DIR="$HOME/.nvm"
-[ -s "$HOMEBREW_PREFIX/opt/nvm/nvm.sh" ] && source "$HOMEBREW_PREFIX/opt/nvm/nvm.sh" # This loads nvm
+[ -s "$HOMEBREW_PREFIX/opt/nvm/nvm.sh" ] && source "$HOMEBREW_PREFIX/opt/nvm/nvm.sh"                                       # This loads nvm
 [ -s "$HOMEBREW_PREFIX/opt/nvm/etc/bash_completion.d/nvm" ] && source "$HOMEBREW_PREFIX/opt/nvm/etc/bash_completion.d/nvm" # This loads nvm bash_completion
 
 # Per-machine customisations

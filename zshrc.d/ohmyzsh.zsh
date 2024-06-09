@@ -14,11 +14,8 @@ fi
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-if [[ $KDHIRA_PROMPT_STRATEGY == 'pl10k' ]]; then
-    test -d ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/themes/powerlevel10k || git clone https://github.com/romkatv/powerlevel10k ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/themes/powerlevel10k &>/dev/null
-    ZSH_THEME="powerlevel10k/powerlevel10k"
-    source $KDHIRA_DOTFILES/zshrc.d/powerlevel10k.sh
-fi
+# ZSH_THEME=
+
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
 # a theme from this variable instead of looking in $ZSH/themes/
