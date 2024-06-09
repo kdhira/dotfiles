@@ -14,6 +14,8 @@
 	lu = l HEAD @{u}
 	see = show --format='%C(yellow)%H%C(reset)%C(auto)%d%C(reset)%nAuthor: %C(auto)%an%C(reset) <%ae>%nCommit: %cn <%ce>%nDate:   %aD%n        %cD%nParent: %C(yellow)%p%C(reset)%n%w(0,4,4)%n%s%n%+b%+N'
 	lag = l --exclude=refs/notes/commits --all
+    lo = l --oneline
+    lago = lag --oneline
 	addp = add -p
 	diffs = diff --staged
 	diffpull = diff @..@{upstream}
