@@ -80,9 +80,10 @@ shell_integration = true
     foreground = "black"
     background = "green"
     background_templates = [
+      "{{ if .Staging.Changed }}yellow{{ end }}",
       "{{ if or (.Detached) (.Merge) (.Rebase) (.CherryPick) (.Revert) }}magenta{{ end }}",
-      "{{ if and (eq .Working.Unmerged 0) (eq .Working.Deleted 0) (eq .Working.Added 0) (eq .Working.Modified 0) (not .Staging.Changed) (ne .Working.Untracked 0) }}blue{{ end }}",
-      "{{ if or (.Working.Changed) (.Staging.Changed) }}yellow{{ end }}",
+      "{{ if and (eq .Working.Unmerged 0) (eq .Working.Deleted 0) (eq .Working.Added 0) (eq .Working.Modified 0) (ne .Working.Untracked 0) }}cyan{{ end }}",
+      "{{ if .Working.Changed }}yellow{{ end }}",
     ]
     template = """ \
     {{ printf "%.8s" .Commit.Sha }} {{ .HEAD }}\
