@@ -105,17 +105,14 @@ shell_integration = true
       fetch_status = true
       branch_identical_icon = ''
 
-  [[blocks.segments]]
-  type = "aws"
-  style = "powerline"
-  powerline_symbol = ""
-  foreground = "black"
-  background = "lightRed"
-  template = "{{ if or (.Env.AWSUME_PROFILE) (.Env.AWS_PROFILE) }} AWS {{ .Profile }}{{if .Region }}@{{ .Region }}{{ end }} {{ end }}"
+[[blocks]]
+  type = "rprompt"
 
   [[blocks.segments]]
-  type = "python"
-  style = "powerline"
-  powerline_symbol = ""
-  foreground = "black"
-  background = "blue"
+    type = "aws"
+    style = "plain"
+    template = "{{ if or (.Env.AWSUME_PROFILE) (.Env.AWS_PROFILE) }} AWS {{ .Profile }}{{if .Region }}@{{ .Region }}{{ end }} {{ end }}"
+
+  [[blocks.segments]]
+    type = "python"
+    style = "plain"
