@@ -15,7 +15,7 @@
 ###############################################################################
 
 KDHIRA_PROMPT_STRATEGY=${KDHIRA_PROMPT_STRATEGY:-omp}
-KDHIRA_ZSH_PLUGIN_MANGER=${KDHIRA_ZSH_PLUGIN_MANGER:-zinit}
+KDHIRA_ZSH_PLUGIN_MANAGER=${KDHIRA_ZSH_PLUGIN_MANAGER:-zinit}
 
 # Homebrew init
 # LOADS:
@@ -26,8 +26,8 @@ if [[ $TERM_PROGRAM == 'iTerm.app' ]]; then
     [ -f "$HOME/.iterm2_shell_integration.zsh" ] && source "$HOME/.iterm2_shell_integration.zsh"
 fi
 
-[ "$KDHIRA_ZSH_PLUGIN_MANGER" = "zinit" ] && source $KDHIRA_DOTFILES/zshrc.d/zinit.zsh
-[ "$KDHIRA_ZSH_PLUGIN_MANGER" = "ohmyzsh" ] && source $KDHIRA_DOTFILES/zshrc.d/ohmyzsh.zsh
+[ "$KDHIRA_ZSH_PLUGIN_MANAGER" = "zinit" ] && source $KDHIRA_DOTFILES/zshrc.d/zinit.zsh
+[ "$KDHIRA_ZSH_PLUGIN_MANAGER" = "ohmyzsh" ] && source $KDHIRA_DOTFILES/zshrc.d/ohmyzsh.zsh
 
 # fzf, not supported for WarpTerminal
 if [[ $TERM_PROGRAM != 'WarpTerminal' ]]; then
