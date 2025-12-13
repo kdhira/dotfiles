@@ -1,4 +1,4 @@
-version = 3
+version = 4
 shell_integration = true
 final_space = true
 
@@ -21,7 +21,7 @@ final_space = true
     type = 'executiontime'
     style = 'powerline'
 
-    [blocks.segments.properties]
+    [blocks.segments.options]
       always_enabled = false
       style = 'austin'
       threshold = 500
@@ -35,7 +35,7 @@ final_space = true
     style = 'powerline'
     background_templates = ['{{ if ge .Code 128 }}blue{{ end }}', '{{ if eq .Code 0 }}green{{ end }}']
 
-    [blocks.segments.properties]
+    [blocks.segments.options]
       always_enabled = false
 
   [[blocks.segments]]
@@ -54,7 +54,7 @@ final_space = true
     type = 'path'
     style = 'powerline'
 
-    [blocks.segments.properties]
+    [blocks.segments.options]
       style = 'full'
 
   [[blocks.segments]]
@@ -66,7 +66,7 @@ final_space = true
     style = 'powerline'
     background_templates = ['{{ if .Staging.Changed }}yellow{{ end }}', '{{ if or (.Detached) (.Merge) (.Rebase) (.CherryPick) (.Revert) }}magenta{{ end }}', '{{ if and (eq .Working.Unmerged 0) (eq .Working.Deleted 0) (eq .Working.Added 0) (eq .Working.Modified 0) (ne .Working.Untracked 0) }}cyan{{ end }}', '{{ if .Working.Changed }}yellow{{ end }}']
 
-    [blocks.segments.properties]
+    [blocks.segments.options]
       branch_icon = ''
       branch_identical_icon = ''
       commit_icon = '@'

@@ -1,118 +1,85 @@
-#:schema https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json
-
-version = 2
-final_space = true
-# console_title_template = '{{ .Shell }} in {{ .Folder }}'
-# iterm_features = ["prompt_mark"]
+version = 3
 shell_integration = true
-
-# [palette]
-#   black = '#262B44'
-#   blue = '#4B95E9'
-#   green = '#59C9A5'
-#   orange = '#F07623'
-#   red = '#D81E5B'
-#   white = '#E0DEF4'
-#   yellow = '#F3AE35'
+final_space = true
 
 [[blocks]]
-  type = "prompt"
-  alignment = "left"
+  type = 'prompt'
+  alignment = 'left'
 
   [[blocks.segments]]
-    type = 'session'
-    style = "diamond"
-    powerline_symbol = ""
-    foreground = "white"
-    background = "darkGray"
     template = ' {{ .UserName }}@{{ .HostName }} '
+    foreground = 'white'
+    powerline_symbol = ''
+    background = 'darkGray'
+    type = 'session'
+    style = 'diamond'
 
   [[blocks.segments]]
-    type = "executiontime"
-    style = "powerline"
-    powerline_symbol = ""
-    foreground = "black"
-    background = "cyan"
+    foreground = 'black'
+    powerline_symbol = ''
+    background = 'cyan'
+    type = 'executiontime'
+    style = 'powerline'
 
     [blocks.segments.properties]
+      always_enabled = false
+      style = 'austin'
       threshold = 500
-      style = "austin"
-      always_enabled = false
 
   [[blocks.segments]]
-    type = "status"
-    style = "powerline"
-    foreground = "black"
-    background = "red"
-    background_templates = [
-      "{{ if ge .Code 128 }}blue{{ end }}",
-      "{{ if eq .Code 0 }}green{{ end }}",
-    ]
-    powerline_symbol = ""
-    template = " ↵ {{ if ge .Code 128 }}{{ reason .Code }}{{ else }}{{ .String }}{{ end }} "
+    template = ' ↵ {{ if ge .Code 128 }}{{ reason .Code }}{{ else }}{{ .String }}{{ end }} '
+    foreground = 'black'
+    powerline_symbol = ''
+    background = 'red'
+    type = 'status'
+    style = 'powerline'
+    background_templates = ['{{ if ge .Code 128 }}blue{{ end }}', '{{ if eq .Code 0 }}green{{ end }}']
 
     [blocks.segments.properties]
       always_enabled = false
 
   [[blocks.segments]]
+    template = '{{ if and (eq .Env.OMP_SHOW_SHLVL "1") (gt (int .Env.SHLVL) 1) }} {{ .Env.SHLVL }} {{ end }}'
+    foreground = 'black'
+    powerline_symbol = ''
+    background = 'yellow'
     type = 'text'
     style = 'powerline'
-    powerline_symbol = ""
-    foreground = "black"
-    background = "yellow"
-    template = '{{ if and (eq .Env.OMP_SHOW_SHLVL "1") (gt (int .Env.SHLVL) 1) }} {{ .Env.SHLVL }} {{ end }}'
 
   [[blocks.segments]]
+    template = ' {{ .Path }} '
+    foreground = 'black'
+    powerline_symbol = ''
+    background = 'white'
     type = 'path'
     style = 'powerline'
-    powerline_symbol = ""
-    foreground = "black"
-    background = "white"
-    template = ' {{ .Path }} '
 
     [blocks.segments.properties]
-      style = "full"
+      style = 'full'
 
   [[blocks.segments]]
-    type = "git"
-    style = "powerline"
-    powerline_symbol = ""
-    foreground = "black"
-    background = "green"
-    background_templates = [
-      "{{ if .Staging.Changed }}yellow{{ end }}",
-      "{{ if or (.Detached) (.Merge) (.Rebase) (.CherryPick) (.Revert) }}magenta{{ end }}",
-      "{{ if and (eq .Working.Unmerged 0) (eq .Working.Deleted 0) (eq .Working.Added 0) (eq .Working.Modified 0) (ne .Working.Untracked 0) }}cyan{{ end }}",
-      "{{ if .Working.Changed }}yellow{{ end }}",
-    ]
-    template = """ \
-    {{ printf "%.8s" .Commit.Sha }} {{ .HEAD }}\
-    {{ if .Staging.Changed }} +{{ end }}\
-    {{ if .Working.Changed }} ●{{ end }}\
-    {{ if gt .Working.Untracked 0 }} ?{{ end }}\
-    {{ if .BranchStatus }} {{ .BranchStatus }}{{ end }}\
-    {{ if gt .StashCount 0 }} ⍟{{ .StashCount }}{{ end }}\
-    {{ if .Detached }} (detached){{ end }}\
-    {{ if .Merge }} (merge){{ end }}\
-    {{ if .Rebase }} (rebase){{ end }}\
-    {{ if .CherryPick }} (cherry-pick){{ end }}\
-    {{ if .Revert }} (revert){{ end }}\
-    {{ " " }}\
-    """
+    template = ' {{ printf "%.8s" .Commit.Sha }} {{ .HEAD }}{{ if .Staging.Changed }} +{{ end }}{{ if .Working.Changed }} ●{{ end }}{{ if gt .Working.Untracked 0 }} ?{{ end }}{{ if .BranchStatus }} {{ .BranchStatus }}{{ end }}{{ if gt .StashCount 0 }} ⍟{{ .StashCount }}{{ end }}{{ if .Detached }} (detached){{ end }}{{ if .Merge }} (merge){{ end }}{{ if .Rebase }} (rebase){{ end }}{{ if .CherryPick }} (cherry-pick){{ end }}{{ if .Revert }} (revert){{ end }}{{ " " }}'
+    foreground = 'black'
+    powerline_symbol = ''
+    background = 'green'
+    type = 'git'
+    style = 'powerline'
+    background_templates = ['{{ if .Staging.Changed }}yellow{{ end }}', '{{ if or (.Detached) (.Merge) (.Rebase) (.CherryPick) (.Revert) }}magenta{{ end }}', '{{ if and (eq .Working.Unmerged 0) (eq .Working.Deleted 0) (eq .Working.Added 0) (eq .Working.Modified 0) (ne .Working.Untracked 0) }}cyan{{ end }}', '{{ if .Working.Changed }}yellow{{ end }}']
+
     [blocks.segments.properties]
       branch_icon = ''
+      branch_identical_icon = ''
       commit_icon = '@'
       fetch_status = true
-      branch_identical_icon = ''
 
 [[blocks]]
-  type = "rprompt"
+  type = 'rprompt'
 
   [[blocks.segments]]
-    type = "aws"
-    style = "plain"
-    template = "{{ if or (.Env.AWSUME_PROFILE) (.Env.AWS_PROFILE) }} AWS {{ .Profile }}{{if .Region }}@{{ .Region }}{{ end }} {{ end }}"
+    template = '{{ if or (.Env.AWSUME_PROFILE) (.Env.AWS_PROFILE) }} AWS {{ .Profile }}{{if .Region }}@{{ .Region }}{{ end }} {{ end }}'
+    type = 'aws'
+    style = 'plain'
 
   [[blocks.segments]]
-    type = "python"
-    style = "plain"
+    type = 'python'
+    style = 'plain'
