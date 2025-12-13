@@ -110,7 +110,11 @@ nmap <Leader>/ :nohlsearch<CR>
 "Allows undo after file is closed
 if exists("&undodir")
     set undofile
-    set undodir=/tmp
+    let s:undodir = expand('~/.vim/undo')
+    if !isdirectory(s:undodir)
+        call mkdir(s:undodir, 'p', 0700)
+    endif
+    let &undodir = s:undodir
 endif
 "Swap files and backup are super annoying. I save often
 set noswapfile
