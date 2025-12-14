@@ -10,6 +10,8 @@ lll() {
 }
 
 alias b64='base64'
+alias pbj='pb | jq'
+
 
 # Encrypt/decrypt with id_rsa
 alias ssh-encrypt='openssl pkeyutl -encrypt -inkey ~/.ssh/id_rsa'
