@@ -61,6 +61,8 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$HOMEBREW_PREFIX/opt/nvm/nvm.sh" ] && source "$HOMEBREW_PREFIX/opt/nvm/nvm.sh"                                       # This loads nvm
 [ -s "$HOMEBREW_PREFIX/opt/nvm/etc/bash_completion.d/nvm" ] && source "$HOMEBREW_PREFIX/opt/nvm/etc/bash_completion.d/nvm" # This loads nvm bash_completion
 
+[ -d "$HOME/.zsh_completions" ] && export fpath=($HOME/.zsh_completions $fpath)
+
 # Per-machine customisations
 if [ -f ~/.zshrc-user ]; then
     source ~/.zshrc-user
