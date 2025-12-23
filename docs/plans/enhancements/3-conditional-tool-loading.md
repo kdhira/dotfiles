@@ -89,7 +89,7 @@ If using zinit, leverage its built-in lazy loading:
 ```zsh
 # Load NVM only when nvm command is used
 zinit ice wait lucid
-zinit snippet OMZP::nvm
+zinit light lukechilds/zsh-nvm
 ```
 
 ## Benchmark

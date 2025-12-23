@@ -27,9 +27,6 @@ zinit_config() {
     zinit light zsh-users/zsh-autosuggestions
     zinit light Aloxaf/fzf-tab
 
-    # Snippets
-    zinit snippet OMZP::aws
-
     # Binds
     # bindkey '^p' history-search-backward
     bindkey '^[[A' history-search-backward

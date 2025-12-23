@@ -4,14 +4,7 @@
 
 Read through the [README](./README.md) to set up base `zsh`, `git`, and `vim` configuration
 
-### Oh My Zsh + Powerlevel10k
-
-Install Oh My Zsh:
-
-```sh
-# Verify: https://ohmyz.sh/#install
-sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-```
+### zinit + Oh My Posh
 
 Install the Fira Code Nerd Font through `brew` (scroll down to the _Brew_ section below for info in installing `brew`):
 
@@ -22,28 +15,10 @@ brew install font-fira-code-nerd-font
 
 Then use the "Fira Code Nerd Font" as the font for your editors, terminals. This font supports the Nerd Font glyphs as well as ligatures.
 
-Install Powerlevel10k by following https://github.com/romkatv/powerlevel10k#oh-my-zsh, which is essentially:
+This repo’s `~/.zshrc` uses:
 
-```sh
-git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
-```
-
-Source [`zshrc.d/ohmyzsh.zsh`](./zshrc.d/ohmyzsh.zsh) to get all of the configuration, including the powerlevel10k theme config:
-
-```sh
-# ~/.zshrc
-KDHIRA_PROMPT_STRATEGY=pl10k # If this is unset/set to something else, powerlevel10k theme won't be used
-source $KDHIRA_DOTFILES/zshrc.d/ohmyzsh.zsh
-```
-
-The following omz plugins are used which can be installed through cloning their respective repos into the `.oh-my-zsh/custom/plugins` directory:
-
-```sh
-git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
-git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
-```
-
-NB: it might be possible to install these plugins with `brew` (such as with Intel Mac), however you might experience linking issues (such as with Apple Silicon Mac).
+- `zinit` for plugin management (`zshrc.d/zinit.zsh`)
+- `oh-my-posh` for prompt theming (`oh-my-posh/omp.toml`)
 
 Disable zsh's "auto cd", which is likely enabled by Oh My Zsh, by adding to your `.zshrc`:
 
