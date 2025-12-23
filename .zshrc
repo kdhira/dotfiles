@@ -56,9 +56,9 @@ fi
 source $KDHIRA_DOTFILES/zshrc.d/env.sh
 source $KDHIRA_DOTFILES/zshrc.d/alias.sh
 
-# NVM
-export NVM_DIR="$HOME/.nvm"
-[ -s "$HOMEBREW_PREFIX/opt/nvm/nvm.sh" ] && source "$HOMEBREW_PREFIX/opt/nvm/nvm.sh"
+# fnm (Fast Node Manager) - so much better than nvm
+command -v fnm &>/dev/null || brew install fnm
+eval "$(fnm env --use-on-cd --shell zsh)"
 
 [ -d "$HOME/.zsh_completions" ] && export fpath=($HOME/.zsh_completions $fpath)
 

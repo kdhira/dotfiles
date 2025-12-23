@@ -2,13 +2,13 @@
 
 This is the repository to store configuration for some of the software/programs I use that don't have their own natural configuration sync/version-control capabilities.
 
-## Fist Things First
+## First Things First
 
-Ensure you have a `~/.zshrc` file defined, and add to it a variable export for the location of this repository:
+Set `KDHIRA_DOTFILES` in `~/.zshenv` so your shell can find this repo reliably (especially after symlinking `~/.zshrc`):
 
 ```sh
 # ~/.zshenv
-KDHIRA_DOTFILES=/path/to/dotfiles
+export KDHIRA_DOTFILES=/path/to/dotfiles
 ```
 
 ```sh
