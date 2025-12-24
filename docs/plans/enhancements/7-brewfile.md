@@ -11,7 +11,7 @@ A Brewfile documents all Homebrew dependencies, enabling:
 ## Current State
 
 Dependencies are installed ad-hoc or auto-installed by shell config:
-- `.zshrc` installs `fzf`, `starship`, `oh-my-posh` if missing
+- `.zshrc` installs `fzf` and `oh-my-posh` if missing
 - No central list of required packages
 
 ## Proposed Brewfile
@@ -38,7 +38,6 @@ brew "zsh"
 brew "zsh-completions"
 
 # Prompt
-brew "starship"
 brew "oh-my-posh"
 
 # Search & Navigation

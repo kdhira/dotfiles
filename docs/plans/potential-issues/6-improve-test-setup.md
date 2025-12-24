@@ -58,8 +58,7 @@ Add a job to validate configs parse correctly:
       - name: Validate TOML configs
         run: |
           pip install toml
-          python -c "import toml; toml.load('oh-my-posh/omp.toml')"
-          python -c "import toml; toml.load('starship/starship.toml')"
+          python3 -c "import toml; toml.load('oh-my-posh/omp.toml')"
 
       - name: Validate vim syntax
         run: |
@@ -102,7 +101,6 @@ shellcheck zshrc.d/*.sh .zshrc
 
 echo "=== Validating TOML ==="
 python3 -c "import toml; toml.load('oh-my-posh/omp.toml')"
-python3 -c "import toml; toml.load('starship/starship.toml')"
 
 echo "=== All tests passed ==="
 ```

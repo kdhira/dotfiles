@@ -112,28 +112,6 @@ Enable `fzf` through script source:
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 ```
 
-### starship
-
-_Starship provides a configuration framework for terminal prompt._
-
-> For more info, visit https://starship.rs/
-
-Install with:
-
-```sh
-brew install starship
-```
-
-Enable the prompt through the following `eval`:
-
-```sh
-# ~/.zshrc
-export STARSHIP_CONFIG=$KDHIRA_DOTFILES/starship/starship.toml
-eval "$(starship init zsh)"
-```
-
-Edit [`starship.toml`](./starship/starship.toml) to configure the prompt
-
 ### rectangle
 
 _Rectangle is a window management tool for MacOS._

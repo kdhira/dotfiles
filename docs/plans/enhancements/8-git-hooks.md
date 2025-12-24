@@ -45,10 +45,6 @@ if command -v python3 &>/dev/null; then
         echo "❌ Invalid TOML: oh-my-posh/omp.toml"
         exit 1
     }
-    python3 -c "import tomllib; tomllib.load(open('starship/starship.toml', 'rb'))" || {
-        echo "❌ Invalid TOML: starship/starship.toml"
-        exit 1
-    }
     echo "  ✓ TOML valid"
 fi
 

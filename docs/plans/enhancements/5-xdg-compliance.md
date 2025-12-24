@@ -95,7 +95,6 @@ mv ~/.zshrc.d ~/.config/zsh/zshrc.d
 │   └── zshrc.d/
 ├── oh-my-posh/
 │   └── omp.toml
-└── starship.toml
 ```
 
 ## Implementation Steps

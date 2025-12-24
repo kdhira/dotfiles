@@ -1,13 +1,12 @@
 # Add Nerd Fonts Fallback
 
 ## Problem
-The prompt configurations (oh-my-posh, starship) and vim status line use Nerd Font icons. If Nerd Fonts aren't installed, users see broken glyphs (boxes, question marks) with no graceful degradation.
+The prompt configuration (oh-my-posh) and vim status line use Nerd Font icons. If Nerd Fonts aren't installed, users see broken glyphs (boxes, question marks) with no graceful degradation.
 
 ## Current State
 
 **Files using Nerd Font icons:**
 - `oh-my-posh/omp.toml` - PowerLine symbols, git icons
-- `starship/starship.toml` - Language icons, git symbols
 - `.vimrc` (lightline) - Status bar may use special characters
 
 ## Proposed Solution
@@ -37,7 +36,6 @@ fi
 
 Create alternative config files:
 - `oh-my-posh/omp-minimal.toml` - Uses ASCII characters only
-- `starship/starship-minimal.toml` - Uses ASCII characters only
 
 ### Option C: Document Requirement + Auto-Install
 
@@ -64,7 +62,6 @@ install_nerd_font() {
 ## Files to Create
 
 - `oh-my-posh/omp-minimal.toml` (if using Option B)
-- `starship/starship-minimal.toml` (if using Option B)
 
 ## Files to Modify
 

@@ -7,14 +7,8 @@
 # Environment Variables (set in ~/.zshenv):
 # > Required
 #   - KDHIRA_DOTFILES: Directory to dotfiles repo clone
-# > Optional
-#   - KDHIRA_PROMPT_STRATEGY: Which PS1 prompt engine to use (omp, starship)
-#   - STARSHIP_CONFIG: Path to sharship config
-#       (default $KDHIRA_DOTFILES/starship/starship.toml)
 
 ###############################################################################
-
-KDHIRA_PROMPT_STRATEGY=${KDHIRA_PROMPT_STRATEGY:-omp}
 
 # Homebrew init
 # LOADS:
@@ -40,16 +34,8 @@ if [[ $TERM_PROGRAM != 'WarpTerminal' ]]; then
     --color=marker:#f4dbd6,fg+:#cad3f5,prompt:#c6a0f6,hl+:#ed8796"
 fi
 
-if [[ $KDHIRA_PROMPT_STRATEGY == 'starship' ]]; then
-    command -v starship &>/dev/null || brew install starship
-    export STARSHIP_CONFIG=${STARSHIP_CONFIG:-$KDHIRA_DOTFILES/starship/starship.toml}
-    eval "$(starship init zsh)"
-fi
-
-if [[ $KDHIRA_PROMPT_STRATEGY == 'omp' ]]; then
-    command -v oh-my-posh &>/dev/null || brew install oh-my-posh
-    eval "$(oh-my-posh init zsh --config $KDHIRA_DOTFILES/oh-my-posh/omp.toml)"
-fi
+command -v oh-my-posh &>/dev/null || brew install oh-my-posh
+eval "$(oh-my-posh init zsh --config $KDHIRA_DOTFILES/oh-my-posh/omp.toml)"
 
 source $KDHIRA_DOTFILES/zshrc.d/env.sh
 source $KDHIRA_DOTFILES/zshrc.d/alias.sh
