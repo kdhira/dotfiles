@@ -9,8 +9,10 @@ final_space = true
   [[blocks.segments]]
     template = ' {{ .UserName }}@{{ .HostName }} '
     foreground = 'white'
+    foreground_templates = ['{{ if .Env.SSH_CLIENT }}black{{ end }}']
     powerline_symbol = ''
     background = 'darkGray'
+    background_templates = ['{{ if .Env.SSH_CLIENT }}magenta{{ end }}']
     type = 'session'
     style = 'diamond'
 
