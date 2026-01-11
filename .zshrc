@@ -46,14 +46,14 @@ eval "$(fnm env --use-on-cd --shell zsh)"
 
 [ -d "$HOME/.zsh_completions" ] && export fpath=($HOME/.zsh_completions $fpath)
 
+unsetopt AUTO_CD
+autoload -U compinit && compinit
+autoload -U +X bashcompinit && bashcompinit
+
 # Per-machine customisations
 if [ -f ~/.zshrc-user ]; then
     source ~/.zshrc-user
 fi
-
-unsetopt AUTO_CD
-autoload -U compinit && compinit
-autoload -U +X bashcompinit && bashcompinit
 
 if type zinit &>/dev/null; then
     zinit cdreplay -q
