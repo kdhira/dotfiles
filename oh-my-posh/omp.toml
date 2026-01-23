@@ -6,8 +6,9 @@ final_space = true
   type = 'prompt'
   alignment = 'left'
 
+  # SESSION (FULL ONLY)
   [[blocks.segments]]
-    template = ' {{ .UserName }}@{{ .HostName }} '
+    template = '{{ if eq .Env.OMP_MODE "compact" }}{{ else }} {{ .UserName }}@{{ .HostName }} {{ end }}'
     foreground = 'white'
     foreground_templates = ['{{ if .Env.SSH_CLIENT }}black{{ end }}']
     powerline_symbol = ''
@@ -16,7 +17,9 @@ final_space = true
     type = 'session'
     style = 'diamond'
 
+  # EXECUTION TIME (FULL ONLY)
   [[blocks.segments]]
+    template = '{{ if eq .Env.OMP_MODE "compact" }}{{ else }} {{ .FormattedMs }} {{ end }}'
     foreground = 'black'
     powerline_symbol = ''
     background = 'cyan'
@@ -28,8 +31,9 @@ final_space = true
       style = 'austin'
       threshold = 500
 
+  # STATUS (FULL: your original; COMPACT: only show when non-zero)
   [[blocks.segments]]
-    template = ' ↵ {{ if ge .Code 128 }}{{ reason .Code }}{{ else }}{{ .String }}{{ end }} '
+    template = '{{ if eq .Env.OMP_MODE "compact" }}{{ if ne .Code 0 }} ↵ {{ .String }} {{ end }}{{ else }} ↵ {{ if ge .Code 128 }}{{ reason .Code }}{{ else }}{{ .String }}{{ end }} {{ end }}'
     foreground = 'black'
     powerline_symbol = ''
     background = 'red'
@@ -40,16 +44,18 @@ final_space = true
     [blocks.segments.options]
       always_enabled = false
 
+  # SHLVL (FULL ONLY)
   [[blocks.segments]]
-    template = '{{ if and (eq .Env.OMP_SHOW_SHLVL "1") (gt (int .Env.SHLVL) 1) }} {{ .Env.SHLVL }} {{ end }}'
+    template = '{{ if eq .Env.OMP_MODE "compact" }}{{ else }}{{ if and (eq .Env.OMP_SHOW_SHLVL "1") (gt (int .Env.SHLVL) 1) }} {{ .Env.SHLVL }} {{ end }}{{ end }}'
     foreground = 'black'
     powerline_symbol = ''
     background = 'yellow'
     type = 'text'
     style = 'powerline'
 
+  # PATH (FULL)
   [[blocks.segments]]
-    template = ' {{ .Path }} '
+    template = '{{ if eq .Env.OMP_MODE "compact" }}{{ else }} {{ .Path }} {{ end }}'
     foreground = 'black'
     powerline_symbol = ''
     background = 'white'
@@ -59,8 +65,21 @@ final_space = true
     [blocks.segments.options]
       style = 'full'
 
+  # PATH (COMPACT: mixed)
   [[blocks.segments]]
-    template = ' {{ printf "%.8s" .Commit.Sha }} {{ .HEAD }}{{ if .Staging.Changed }} +{{ end }}{{ if .Working.Changed }} ●{{ end }}{{ if gt .Working.Untracked 0 }} ?{{ end }}{{ if .BranchStatus }} {{ .BranchStatus }}{{ end }}{{ if gt .StashCount 0 }} ⍟{{ .StashCount }}{{ end }}{{ if .Detached }} (detached){{ end }}{{ if .Merge }} (merge){{ end }}{{ if .Rebase }} (rebase){{ end }}{{ if .CherryPick }} (cherry-pick){{ end }}{{ if .Revert }} (revert){{ end }}{{ " " }}'
+    template = '{{ if eq .Env.OMP_MODE "compact" }} {{ .Path }} {{ end }}'
+    foreground = 'black'
+    powerline_symbol = ''
+    background = 'white'
+    type = 'path'
+    style = 'powerline'
+
+    [blocks.segments.options]
+      style = 'mixed'
+
+  # GIT (FULL + COMPACT)
+  [[blocks.segments]]
+    template = '{{ if eq .Env.OMP_MODE "compact" }} {{ printf "%.8s" .Commit.Sha }} {{ else }} {{ printf "%.8s" .Commit.Sha }} {{ .HEAD }}{{ if .Staging.Changed }} +{{ end }}{{ if .Working.Changed }} ●{{ end }}{{ if gt .Working.Untracked 0 }} ?{{ end }}{{ if .BranchStatus }} {{ .BranchStatus }}{{ end }}{{ if gt .StashCount 0 }} ⍟{{ .StashCount }}{{ end }}{{ if .Detached }} (detached){{ end }}{{ if .Merge }} (merge){{ end }}{{ if .Rebase }} (rebase){{ end }}{{ if .CherryPick }} (cherry-pick){{ end }}{{ if .Revert }} (revert){{ end }}{{ " " }}{{ end }}'
     foreground = 'black'
     powerline_symbol = ''
     background = 'green'
@@ -74,14 +93,29 @@ final_space = true
       commit_icon = '@'
       fetch_status = true
 
+
+  [[blocks.segments]]
+    template = '{{ if or (.Env.HTTPS_PROXY) (.Env.HTTP_PROXY) }} @ {{ end }}'
+    foreground = 'white'
+    powerline_symbol = ''
+    background = 'black'
+    type = 'text'
+    style = 'powerline'
+
+
+
 [[blocks]]
   type = 'rprompt'
 
+  # AWS (FULL ONLY)
   [[blocks.segments]]
-    template = '{{ if or (.Env.AWSUME_PROFILE) (.Env.AWS_PROFILE) }} AWS {{ .Profile }}{{if .Region }}@{{ .Region }}{{ end }} {{ end }}'
+    template = '{{ if eq .Env.OMP_MODE "compact" }}{{ else }}{{ if or (.Env.AWSUME_PROFILE) (.Env.AWS_PROFILE) }} AWS {{ .Profile }}{{ if .Region }}@{{ .Region }}{{ end }} {{ end }}{{ end }}'
     type = 'aws'
     style = 'plain'
 
+  # PYTHON (FULL ONLY)
+  # If python doesn't respect template in your version, see note below.
   [[blocks.segments]]
+    template = '{{ if eq .Env.OMP_MODE "compact" }}{{ else }}{{ .Output }}{{ end }}'
     type = 'python'
     style = 'plain'
