@@ -58,6 +58,12 @@ if [ -f ~/.zshrc-user ]; then
     source ~/.zshrc-user
 fi
 
+if [[ "${CODEX_SESSION_FORCE:-0}" == "1" ]] || [[ "${PATH}" == *"${CODEX_HOME:-"${HOME}/.codex"}"* ]]; then
+    [ -f ~/.zshrc-codex ] && source ~/.zshrc-codex
+    [ -f ./.zshrc-codex ] && source ./.zshrc-codex
+    export CODEX_SESSION=1
+fi
+
 if type zinit &>/dev/null; then
     zinit cdreplay -q
 fi
