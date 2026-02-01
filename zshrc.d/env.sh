@@ -1,9 +1,13 @@
 #!/usr/bin/env bash
 
-test -d "$HOME/go/bin" && export PATH="$HOME/go/bin:$PATH"
+zsh_path_stack() {
+    test -d "$1" && export PATH="$1:$PATH"
+}
 
-# Always export ~/bin to PATH
-export PATH="$HOME/bin:$PATH"
+zsh_path_queue() {
+    test -d "$1" && export PATH="$PATH:$1"
+}
 
-test -d "$HOME/.cargo/bin" && export PATH="$HOME/.cargo/bin:$PATH"
-
+zsh_path_stack "$HOME/go/bin"
+zsh_path_stack "$HOME/bin"
+zsh_path_stack "$HOME/.cargo/bin"

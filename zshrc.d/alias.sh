@@ -14,8 +14,13 @@ alias pbj='pb | jq'
 
 
 # Encrypt/decrypt with id_rsa
-alias ssh-encrypt='openssl pkeyutl -encrypt -inkey ~/.ssh/id_rsa'
-alias ssh-decrypt='openssl pkeyutl -decrypt -inkey ~/.ssh/id_rsa'
+ssh-encrypt() {
+    openssl pkeyutl -encrypt -inkey "${1:-"$HOME/.ssh/id_rsa"}"
+
+}
+ssh-decrypt() {
+    openssl pkeyutl -decrypt -inkey "${1:-"$HOME/.ssh/id_rsa"}"
+}
 
 dotfiles() {
     _usage="dotfiles [-e|--edit]

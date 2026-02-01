@@ -7,7 +7,9 @@
 # Environment Variables (set in ~/.zshenv):
 # > Required
 #   - KDHIRA_DOTFILES: Directory to dotfiles repo clone
-
+# > Optional
+#   - KDHIRA_ZSH_COMPLETIONS_DIR: Directory for zsh_completions
+#     (Default: "$HOME/.zsh_completions")
 ###############################################################################
 
 # Homebrew init
@@ -34,27 +36,18 @@ if [[ $TERM_PROGRAM != 'WarpTerminal' ]]; then
     --color=marker:#f4dbd6,fg+:#cad3f5,prompt:#c6a0f6,hl+:#ed8796"
 fi
 
+# oh-my-posh setup
 command -v oh-my-posh &>/dev/null || brew install oh-my-posh
 eval "$(oh-my-posh init zsh --config $KDHIRA_DOTFILES/oh-my-posh/omp.toml)"
-
-export OMP_MODE="${OMP_MODE:-full}"
-omp-toggle() {
-    export OMP_MODE=$([[ "$OMP_MODE" == "full" ]] && echo compact || echo full)
-    # Simulate pressing Enter on an empty command
-    BUFFER=""
-    zle accept-line 2>/dev/null || true
-}
-zle -N omp-toggle
-bindkey '^O' omp-toggle
-
-source $KDHIRA_DOTFILES/zshrc.d/env.sh
-source $KDHIRA_DOTFILES/zshrc.d/alias.sh
+source $KDHIRA_DOTFILES/zshrc.d/omp.zsh
 
 # fnm (Fast Node Manager) - so much better than nvm
 command -v fnm &>/dev/null || brew install fnm
 eval "$(fnm env --use-on-cd --shell zsh)"
 
-[ -d "$HOME/.zsh_completions" ] && export fpath=($HOME/.zsh_completions $fpath)
+source $KDHIRA_DOTFILES/zshrc.d/env.sh
+source $KDHIRA_DOTFILES/zshrc.d/alias.sh
+source $KDHIRA_DOTFILES/zshrc.d/zsh_completions.zsh
 
 unsetopt AUTO_CD
 autoload -U compinit && compinit
