@@ -95,7 +95,7 @@ final_space = true
 
 
   [[blocks.segments]]
-    template = '{{ if or (.Env.HTTPS_PROXY) (.Env.HTTP_PROXY) }} @ {{ end }}'
+    template = ' {{ if or (.Env.HTTPS_PROXY) (.Env.HTTP_PROXY) }}@{{ end }}{{ if .Env.CHATGPT_TOKEN }}✾{{ end }} '
     foreground = 'white'
     powerline_symbol = ''
     background = 'black'
