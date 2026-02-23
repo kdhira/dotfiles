@@ -12,6 +12,8 @@ lll() {
 alias b64='base64'
 alias pbj='pb | jq'
 
+alias kevtop="tmux new-session -d -s monitors 'htop' \; split-window -v 'macmon' \; setw -g mouse on\; attach-session -t monitors"
+
 
 # Encrypt/decrypt with id_rsa
 ssh-encrypt() {
