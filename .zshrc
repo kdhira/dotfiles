@@ -51,6 +51,7 @@ command -v pay-respects &>/dev/null && eval "$(pay-respects zsh)"
 
 source $KDHIRA_DOTFILES/zshrc.d/env.sh
 source $KDHIRA_DOTFILES/zshrc.d/alias.sh
+source $KDHIRA_DOTFILES/zshrc.d/agents.sh
 source $KDHIRA_DOTFILES/zshrc.d/zsh_completions.zsh
 
 unsetopt AUTO_CD
@@ -60,15 +61,6 @@ autoload -U +X bashcompinit && bashcompinit
 # Per-machine customisations
 if [ -f ~/.zshrc-user ]; then
     source ~/.zshrc-user
-fi
-
-if [[ "${CODEX_SESSION:-0}" == "1" ]] \
-    || [ -n "${CODEX_THREAD_ID:-""}" ] \
-    || [[ "${__CFBundleIdentifier:-""}" == "com.openai.codex" ]] \
-    || [[ "${PATH}" == *"${CODEX_HOME:-"${HOME}/.codex"}"* ]]; then
-    [ -f ~/.zshrc-codex ] && source ~/.zshrc-codex
-    [ -f ./.zshrc-codex ] && source ./.zshrc-codex
-    export CODEX_SESSION=1
 fi
 
 if type zinit &>/dev/null; then
