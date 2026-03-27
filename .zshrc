@@ -45,6 +45,10 @@ source $KDHIRA_DOTFILES/zshrc.d/omp.zsh
 command -v fnm &>/dev/null || brew install fnm
 eval "$(fnm env --use-on-cd --shell zsh)"
 
+# pay-respects: https://github.com/iffse/pay-respects
+# cargo install cargo install pay-respects
+command -v pay-respects &>/dev/null && eval "$(pay-respects zsh)"
+
 source $KDHIRA_DOTFILES/zshrc.d/env.sh
 source $KDHIRA_DOTFILES/zshrc.d/alias.sh
 source $KDHIRA_DOTFILES/zshrc.d/zsh_completions.zsh
