@@ -63,6 +63,18 @@ alias pc='pbcopy'
 alias pcd='base64 -D | pbcopy'
 alias pce='base64 | pbcopy'
 
+pbfrom() {
+    cat "$1" | pbcopy
+}
+
+pbto() {
+    mkdir -p "$(dirname "$1")" && pbpaste > "$1"
+}
+
+pbtox() {
+    write_to "$1" && chmod +x "$1"
+}
+
 # X509 utils
 alias x509='openssl x509'
 alias x509t='openssl x509 -text'

@@ -12,11 +12,6 @@
 #     (Default: "$HOME/.zsh_completions")
 ###############################################################################
 
-# Homebrew init
-# LOADS:
-#   HOMEBREW_PREFIX
-source $KDHIRA_DOTFILES/zshrc.d/homebrew.sh
-
 if [[ $TERM_PROGRAM == 'iTerm.app' ]]; then
     [ -f "$HOME/.iterm2_shell_integration.zsh" ] && source "$HOME/.iterm2_shell_integration.zsh"
 fi
