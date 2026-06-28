@@ -68,6 +68,3 @@ if [ ! -d "$(dirname $ZINIT_HOME)" ]; then
 else
     zinit_config
 fi
-
-# Aliases
-alias ls='ls --color'
