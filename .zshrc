@@ -12,44 +12,45 @@
 #     (Default: "$HOME/.zsh_completions")
 ###############################################################################
 
-source "$KDHIRA_DOTFILES/zshrc.d/homebrew.sh"
+# Homebrew init
+# LOADS:
+#   HOMEBREW_PREFIX
+source "${KDHIRA_DOTFILES}/zshrc.d/homebrew.sh"
 
-if [[ $TERM_PROGRAM == 'iTerm.app' ]]; then
-    [ -f "$HOME/.iterm2_shell_integration.zsh" ] && source "$HOME/.iterm2_shell_integration.zsh"
+if [[ "${TERM_PROGRAM}" == 'iTerm.app' ]]; then
+    [ -f "${HOME}/.iterm2_shell_integration.zsh" ] && source "${HOME}/.iterm2_shell_integration.zsh"
 fi
 
-source $KDHIRA_DOTFILES/zshrc.d/zinit.zsh
+source "${KDHIRA_DOTFILES}/zshrc.d/zinit.zsh"
 
-# fzf, not supported for WarpTerminal
-if [[ $TERM_PROGRAM != 'WarpTerminal' ]]; then
-    command -v fzf &>/dev/null || brew install fzf
-    eval "$(fzf --zsh)"
-
+# fzf
+command -v fzf &>/dev/null && \
+    eval "$(fzf --zsh)" && \
     # fzf catppuccin theme
     # https://github.com/catppuccin/fzf
     export FZF_DEFAULT_OPTS=" \
-    --color=bg+:#363a4f,bg:#24273a,spinner:#f4dbd6,hl:#ed8796 \
-    --color=fg:#cad3f5,header:#ed8796,info:#c6a0f6,pointer:#f4dbd6 \
-    --color=marker:#f4dbd6,fg+:#cad3f5,prompt:#c6a0f6,hl+:#ed8796"
-fi
+        --color=bg+:#363a4f,bg:#24273a,spinner:#f4dbd6,hl:#ed8796 \
+        --color=fg:#cad3f5,header:#ed8796,info:#c6a0f6,pointer:#f4dbd6 \
+        --color=marker:#f4dbd6,fg+:#cad3f5,prompt:#c6a0f6,hl+:#ed8796"
 
 # oh-my-posh setup
-command -v oh-my-posh &>/dev/null || brew install oh-my-posh
-eval "$(oh-my-posh init zsh --config $KDHIRA_DOTFILES/oh-my-posh/omp.toml)"
-source $KDHIRA_DOTFILES/zshrc.d/omp.zsh
+command -v oh-my-posh &>/dev/null && \
+    eval "$(oh-my-posh init zsh --config "${KDHIRA_DOTFILES}/oh-my-posh/omp.toml")" && \
+    source "${KDHIRA_DOTFILES}/zshrc.d/omp.zsh"
 
 # fnm (Fast Node Manager) - so much better than nvm
-command -v fnm &>/dev/null || brew install fnm
-eval "$(fnm env --use-on-cd --shell zsh)"
+command -v fnm &>/dev/null && \
+    eval "$(fnm env --use-on-cd --shell zsh)"
 
-source $KDHIRA_DOTFILES/zshrc.d/env.zsh
-source $KDHIRA_DOTFILES/zshrc.d/alias.sh
-source $KDHIRA_DOTFILES/zshrc.d/agents.sh
-source $KDHIRA_DOTFILES/zshrc.d/zsh_completions.zsh
+source "${KDHIRA_DOTFILES}/zshrc.d/env.zsh"
+source "${KDHIRA_DOTFILES}/zshrc.d/alias.sh"
+source "${KDHIRA_DOTFILES}/zshrc.d/agents.sh"
+source "${KDHIRA_DOTFILES}/zshrc.d/zsh_completions.zsh"
 
 # pay-respects: https://github.com/iffse/pay-respects
-# cargo install cargo install pay-respects
-command -v pay-respects &>/dev/null && eval "$(pay-respects zsh)"
+# cargo install pay-respects
+command -v pay-respects &>/dev/null && \
+    eval "$(pay-respects zsh)"
 
 unsetopt AUTO_CD
 autoload -U compinit && compinit
