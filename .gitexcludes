@@ -1,6 +1,5 @@
 .DS_Store
-.venv/
-.idea/
 /.claude/settings.local.json
+/.claude/worktrees
 .symlinks/
 tmp/

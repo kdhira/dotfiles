@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env zsh
 
 zsh_path_stack() {
     test -d "$1" && export PATH="$1:$PATH"
